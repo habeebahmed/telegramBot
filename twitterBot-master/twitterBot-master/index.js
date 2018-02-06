@@ -66,9 +66,9 @@ bot.on('message', (msg) => {
                 reply_markup: JSON.stringify({
                   inline_keyboard: [
                     [{
-                      text: 'some button text 1',
-                      url: 'https://www.google.com',
-                      callback_data:'1'
+                      text: 'go to web',
+                      url: "https://google.com"
+                      //callback_data:'1'
                     }]
                   ]
                 })
@@ -94,9 +94,9 @@ bot.on('message', (msg) => {
     //console.log(url_image[0]);
     for(i=0;i<5;i++){
     bot.sendMessage(msg.chat.id,'<b>'+title[i]+'</b>\n',{parse_mode: 'HTML'})
-    bot.sendPhoto(msg.chat.id,url_image[0],/*{caption: 'insane'}*/options)
-    bot.sendMessage(msg.chat.id,'<i>'+desc[0]+'</i>\n',{parse_mode: 'HTML'})
-    bot.sendMessage(msg.chat.id,'<a href='+urln[i]+'>go to web</a>\n',{parse_mode: 'HTML'})
+    bot.sendPhoto(msg.chat.id,url_image[i],/*{caption: 'insane'}*/options)
+    bot.sendMessage(msg.chat.id,'<i>'+desc[i]+'</i>\n',{parse_mode: 'HTML'})
+    //bot.sendMessage(msg.chat.id,'<a href='+urln[0]+'>go to web</a>\n',{parse_mode: 'HTML'})
   }
 })
 }
