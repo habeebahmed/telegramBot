@@ -77,13 +77,13 @@ bot.on('message', (msg) => {
   newsapi.v2.topHeadlines({
     //sources: 'bbc-news',
     //  q: '',
-    category: 'technology',
+    category: 'science',
     language: 'en',
-    country: 'us'
+    country: 'in'
   }).then(response => {
 
     //console.log(response);
-    for (i = 0; i < 5; i++) {
+    for (i = 0; i <= 5; i++) {
       title[i] = response.articles[i].title,
         urln[i] = response.articles[i].url,
         url_image[i] = response.articles[i].urlToImage,
@@ -91,7 +91,9 @@ bot.on('message', (msg) => {
       }
     //console.log(title);
     //console.log(urln);
-    //console.log(url_image[0]);
+    for (var i = 0; i < 5; i++) {
+     console.log(url_image[i])
+   };
     for(i=0;i<5;i++){
     bot.sendMessage(msg.chat.id,'<b>'+title[i]+'</b>\n',{parse_mode: 'HTML'})
     bot.sendPhoto(msg.chat.id,url_image[i],/*{caption: 'insane'}*/options)
