@@ -6,13 +6,30 @@ const bot = new TelegramBot(token, {
   polling: true
 });
 
+var news = require('./demo2.js')
+
 /*bot.on("text", (message) => {
   bot.sendMessage(message.chat.id, "Hello world");
 });*/
+function news_api2(cate,msg) {
+console.log('in function');
+//console.log(cate);
+for (i=0;i<5;i++){
+
+bot.sendMessage(msg.chat.id,cate.articles[i].url)
+
+}
+
+
+}
 bot.onText(/\/start/, (msg) => {
 
 bot.sendMessage(msg.chat.id, "Welcome");
 
+});
+
+bot.onText(/\/help/, (msg) =>{
+  bot.sendMessage(msg.chat.id, "type or use below keyboard for Trending News");
 });
 bot.on('message', (msg) => {
   console.log(msg);
@@ -25,27 +42,28 @@ bot.on('message', (msg) => {
    case 'Technology':
    case 'technology':
    bot.sendMessage(msg.chat.id, 'Ok , we will get you the latest news');
+   news.news_api('technology',msg)
 
-     break;
+   break;
 
    case 'Science':
    case 'science':
    bot.sendMessage(msg.chat.id, 'Ok , we will get you the latest news');
-
+   news.news_api('science',msg)
      break;
 
    case 'Entertainment':
    case 'entertainment':
 
    bot.sendMessage(msg.chat.id, 'Ok , we will get you the latest news');
-
+   news.news_api('entertainment',msg)
      break;
 
    case 'Sports':
    case 'sports':
 
     bot.sendMessage(msg.chat.id, 'Ok , we will get you the latest news');
-
+    news.news_api('sports',msg)
      break;
 
    default:
@@ -70,7 +88,7 @@ function keyboard(msg) {
   )
 }
 
-bot.on("inline_query",(query)=>{
+/*bot.on("inline_query",(query)=>{
   //console.log(query.query)
   if(query.query === "technology"){
   bot.answerInlineQuery(query.id, [
@@ -88,11 +106,13 @@ bot.on("inline_query",(query)=>{
         message_text: "<b>news</b><i>latest</i><a href='http://www.example.com/'>inline URL</a>",
         parse_mode: 'HTML',
         disable_web_page_preview: false
-      }*/
+      }
     }
   ]
   //,(form)=>{console.log(form.results)}
 );
 
 }
-})
+})*/
+
+module.exports.news_api2 = news_api2
